@@ -1,0 +1,66 @@
+# This workflow will push a release whenver a tag is pushed to the repository.
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  tagged-release:
+
+    #Static version is used to maintain stability
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        #Static version is used to maintain stability
+        node-version: [12.17.0]
+
+    steps:
+    - name: Clone the repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # Do not use this workflow with the install command. A stable environment is
+    # already expected for releases.
+    - name: Run with CI
+      run: npm ci
+
+    # Build to ui for release.
+    - name: Build Bundle
+      id: build_bundle
+      run: gulp bundle
+
+    # Strip the refs/heads/ from GITHUB_REF leaving only the tag name.
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+    # Deploy a new release.
+    # see: https://github.com/marvinpinto/action-automatic-releases
+    - name: Upload Release
+      if: ( steps.build_bundle.outcome  != 'failure' )
+        &&  ( steps.build_bundle.outcome != 'skipped' )
+      id: upload_release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: format('wiki-ui {0}', ${{ steps.vars.outputs.tag }})
+          files: ./build/ui-bundle.zip
+
+    # Notify the docs repo we have a new ui.
+    - name: Docs Dispatch Event
+      if: ( steps.upload_release.outcome  != 'failure' )
+        &&  ( steps.upload_release.outcome != 'skipped' )
+      run: |
+       curl -X POST https://api.github.com/repos/jMonkeyEngine/wiki/dispatches \
+       --user ${{ secrets.JME_UI_DISPATCH }} \
+       --data '{"event_type":"ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
