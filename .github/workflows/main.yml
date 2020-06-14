@@ -1,0 +1,67 @@
+# This file can be used to configure the Node.js build for Antora ui without
+# having Node installed locally. See 'setup-docs/setup.adoc' in the root of this
+# repo for details of how to use this file.
+#
+# The action add-and-commit will commit package-lock.json and package.json if
+# changes are made to the files.
+#
+# If the package-lock.json or package.json files are updated or new depends are
+# installed, the 'npm ci' should always be ran thereafter to speed up build
+# times. When ci is active, the package-lock.json and package.json files in root
+# will not be updated.
+
+name: Build UI
+
+on:
+  push:
+    branches: [ master ]
+
+  pull_request:
+
+jobs:
+  build:
+
+    #Static version is used to maintain stability
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        #Static version is used to maintain stability
+        node-version: [12.17.0]
+
+    steps:
+    - name: Clone the repo
+      uses: actions/checkout@v2
+      with:
+        # Number of commits to fetch. 0 indicates all history.
+        fetch-depth: 1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Run with CI
+      run: npm ci
+
+#    - name: Audit Depends
+#      run: npm audit
+
+    # Build the ui.
+    - name: Build Bundle
+      id: build_bundle
+      run: gulp bundle
+
+    # Detects any updates to package-lock.json and package.json and commits the
+    # files to root.
+    # see:
+    # https://github.com/marketplace/actions/add-commit?version=v4.1.0
+    # for use options.
+    - name: Commit Packages
+      uses: EndBug/add-and-commit@v4
+      with:
+        message: "Commit files for CI workflow"
+        # Commits these files to root if and only if there are changes.
+        add: "package-lock.json package.json"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
