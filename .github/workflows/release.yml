@@ -9,12 +9,12 @@ on:
 jobs:
   tagged-release:
 
-    #Static version is used to maintain stability
+    #Static version is used to maintain stability.
     runs-on: ubuntu-18.04
 
     strategy:
       matrix:
-        #Static version is used to maintain stability
+        #Static version is used to maintain stability.
         node-version: [12.17.0]
 
     steps:
