@@ -63,4 +63,4 @@ jobs:
       run: |
        curl -X POST https://api.github.com/repos/jMonkeyEngine/wiki/dispatches \
        --user ${{ secrets.JME_UI_DISPATCH }} \
-       --data '{"event_type":"ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
+       --data '{"event_type":"wiki-ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
