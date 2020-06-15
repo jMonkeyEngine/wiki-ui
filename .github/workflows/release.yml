@@ -62,5 +62,5 @@ jobs:
         &&  ( steps.upload_release.outcome != 'skipped' )
       run: |
        curl -X POST https://api.github.com/repos/jMonkeyEngine/wiki/dispatches \
-       --user ${{ secrets.JME_UI_DISPATCH }} \
+       --user ${{ secrets.WIKI_UI_DISPATCH }} \
        --data '{"event_type":"wiki-ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
