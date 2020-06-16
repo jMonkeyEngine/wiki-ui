@@ -19,7 +19,10 @@
 :url-nvm-install: {url-nvm}#installation
 :url-source-maps: https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map
 
-image:{img-ci-status}[CI Status (GitLab CI), link={url-ci-pipelines}]
+image:https://github.com/jMonkeyEngine/wiki-ui/workflows/Build%20UI/badge.svg[Build UI Status Badge, 175, 25]
+image:https://github.com/jMonkeyEngine/wiki-ui/workflows/Tagged%20Release/badge.svg[Tagged Release Status Badge, 175, 25]
+
+
 
 This project is an archetype that demonstrates how to produce a UI bundle that can be used by {url-antora}[Antora] to generated a documentation site.
 You can see a preview of the default UI at {url-preview}.

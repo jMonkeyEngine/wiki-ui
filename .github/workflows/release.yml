@@ -1,5 +1,5 @@
 # This workflow will push a release whenver a tag is pushed to the repository.
-name: "tagged-release"
+name: "Tagged Release"
 
 on:
   push:
