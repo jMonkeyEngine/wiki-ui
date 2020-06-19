@@ -275,3 +275,57 @@ html.is-clipped--nav {
   content: " (latest)";
 }
 */
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 28px;
+  position: relative;
+  width: 44px;
+}
+
+.navlabel {
+  margin-left: 10px;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--color-jet-30);
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.slider::before {
+  background-color: var(--color-white);
+  border-radius: 25px;
+  bottom: 4px;
+  content: "";
+  height: 20px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 20px;
+}
+
+input:checked + .slider {
+  background-color: var(--jme-link-font-color);
+}
+
+input:checked + .slider::before {
+  transform: translateX(16px);
+}

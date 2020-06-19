@@ -17,7 +17,7 @@
 }
 
 .nav-toggle {
-  background: url(../img/menu.svg) no-repeat 50% 47.5%;
+  background: var(--jme-menu-icon) no-repeat 50% 47.5%;
   background-size: 49%;
   border: none;
   outline: none;
@@ -35,12 +35,12 @@
 }
 
 .nav-toggle.is-active {
-  background-image: url(../img/back.svg);
+  background-image: var(--jme-back-icon);
   background-size: 41.5%;
 }
 
 .home-link {
-  background: url(../img/home-o.svg) no-repeat 50% 45%;
+  background: var(--jme-home-o-icon) no-repeat 50% 45%;
   background-size: 50%;
   display: block;
   height: 2.5rem;
@@ -50,7 +50,7 @@
 
 .home-link:hover,
 .home-link.is-current {
-  background-image: url(../img/home.svg);
+  background-image: var(--jme-home-icon);
 }
 
 .edit-this-page {
@@ -66,4 +66,22 @@
 
 .toolbar .edit-this-page a {
   color: var(--toolbar-muted-color);
+}
+
+[data-theme="dark"] {
+  --jme-home-icon: url(../img/home_light.svg);
+  --jme-home-o-icon: url(../img/home-o_light.svg);
+  --jme-menu-icon: url(../img/menu_light.svg);
+  --jme-back-icon: url(../img/back_light.svg);
+  /* unused? came from antora default ui */
+  --jme-close-icon: url(../img/close_light.svg);
+}
+
+[data-theme="light"] {
+  --jme-home-icon: url(../img/home.svg);
+  --jme-home-o-icon: url(../img/home-o.svg);
+  --jme-menu-icon: url(../img/menu.svg);
+  --jme-back-icon: url(../img/back.svg);
+  /* unused? came from antora default ui */
+  --jme-close-icon: url(../img/close.svg);
 }

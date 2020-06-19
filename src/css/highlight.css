@@ -1,4 +1,15 @@
-/*! Adapted from the GitHub style by Vasily Polovnyov <vast@whiteants.net> */
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
 .hljs-comment,
 .hljs-quote {
   color: #998;
@@ -9,7 +20,7 @@
 .hljs-selector-tag,
 .hljs-subst {
   color: #333;
-  font-weight: var(--monospace-font-weight-bold);
+  font-weight: bold;
 }
 
 .hljs-number,
@@ -22,14 +33,14 @@
 
 .hljs-string,
 .hljs-doctag {
-  color: #d14;
+  color: rgb(200, 95, 95);
 }
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #900;
-  font-weight: var(--monospace-font-weight-bold);
+  color: rgb(161, 31, 31);
+  font-weight: bold;
 }
 
 .hljs-subst {
@@ -39,7 +50,7 @@
 .hljs-type,
 .hljs-class .hljs-title {
   color: #458;
-  font-weight: var(--monospace-font-weight-bold);
+  font-weight: bold;
 }
 
 .hljs-tag,
@@ -66,7 +77,7 @@
 
 .hljs-meta {
   color: #999;
-  font-weight: var(--monospace-font-weight-bold);
+  font-weight: bold;
 }
 
 .hljs-deletion {
@@ -82,5 +93,5 @@
 }
 
 .hljs-strong {
-  font-weight: var(--monospace-font-weight-bold);
+  font-weight: bold;
 }
