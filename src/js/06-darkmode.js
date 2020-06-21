@@ -7,7 +7,7 @@ if (currentTheme) {
     toggleSwitch.checked = true
   }
 } else {
-  //set dark by default
+  //set light by default
   document.documentElement.setAttribute('data-theme', 'light')
   toggleSwitch.checked = false
 }
@@ -22,4 +22,4 @@ function switchTheme (e) {
   }
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false)
+toggleSwitch.addEventListener('change', switchTheme, true)
