@@ -18,7 +18,7 @@ name: "tagged-release"
 
 on:
   push:
-#    branches: [ master ]
+
     tags:
       - v*
 
