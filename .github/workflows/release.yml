@@ -1,7 +1,12 @@
-# This workflow will push a release whenever a tag is pushed to the repository.
-# It can be configured to push a new release every commit by uncommenting the
-# 'branches: [ master ]' key, commenting out the 'tags:' key, and uncommenting
-# the 'automatic_release_tag:' key of the 'Upload Release' command.
+# This workflow will push a release and trigger the build workflow of the
+# jMonkeyEngine wiki upon pushing a semantic versioned tag to any branch.
+# Example:
+#      git tag -a v1.0.0 -m "my message"
+#      git push origin v1.0.0
+#
+# It can be configured to push a new release every commit to any branch by
+# commenting out the 'tags:' key, and uncommenting the 'automatic_release_tag:'
+# key of the 'Upload Release' command.
 name: "tagged-release"
 
 on:
