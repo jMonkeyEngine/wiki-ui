@@ -1,8 +1,12 @@
-# This workflow will push a release whenver a tag is pushed to the repository.
-name: "Tagged Release"
+# This workflow will push a release whenever a tag is pushed to the repository.
+# It can be configured to push a new release every commit by uncommenting the
+# 'branches: [ master ]' key, commenting out the 'tags:' key, and uncommenting
+# the 'automatic_release_tag:' key of the 'Upload Release' command.
+name: "tagged-release"
 
 on:
   push:
+#    branches: [ master ]
     tags:
       - v*
 
@@ -44,7 +48,8 @@ jobs:
       run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
     # Deploy a new release.
-    # see: https://github.com/marvinpinto/action-automatic-releases
+    # see: https://github.com/marvinpinto/action-automatic-releases for param
+    # options.
     - name: Upload Release
       if: ( steps.build_bundle.outcome  != 'failure' )
         &&  ( steps.build_bundle.outcome != 'skipped' )
@@ -52,8 +57,9 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#          automatic_release_tag: "latest"
           prerelease: false
-          title: format('wiki-ui {0}', ${{ steps.vars.outputs.tag }})
+          title: "jme-ui ${{ steps.vars.outputs.tag }}"
           files: ./build/ui-bundle.zip
 
     # Notify the docs repo we have a new ui.
@@ -61,6 +67,6 @@ jobs:
       if: ( steps.upload_release.outcome  != 'failure' )
         &&  ( steps.upload_release.outcome != 'skipped' )
       run: |
-       curl -X POST https://api.github.com/repos/jMonkeyEngine/wiki/dispatches \
-       --user ${{ secrets.WIKI_UI_DISPATCH }} \
-       --data '{"event_type":"wiki-ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
+       curl -X POST https://api.github.com/repos/mitm001/docs.jmonkeyengine.org/dispatches \
+       --user ${{ secrets.JME_UI_DISPATCH }} \
+       --data '{"event_type":"ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
