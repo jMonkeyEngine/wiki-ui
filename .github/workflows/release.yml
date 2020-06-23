@@ -1,12 +1,19 @@
-# This workflow will push a release and trigger the build workflow of the
-# jMonkeyEngine wiki upon pushing a semantic versioned tag to any branch.
+# This workflow will create a new "latest" release in the release tab of the
+# repository and trigger the build workflow of the jMonkeyEngine wiki upon
+# pushing a semantic versioned tag to any branch.
 # Example:
 #      git tag -a v1.0.0 -m "my message"
 #      git push origin v1.0.0
 #
-# It can be configured to push a new release every commit to any branch by
-# commenting out the 'tags:' key, and uncommenting the 'automatic_release_tag:'
-# key of the 'Upload Release' command.
+# It can be configured to update the existing "latest" release every commit to
+# any branch by commenting out the 'tags:' key, and uncommenting the
+# 'automatic_release_tag:' key of the 'Upload Release' command. You can target a
+# specific release by adding the release version to the action.
+#
+# - uses: "marvinpinto/action-automatic-releases@<VERSION>"
+#
+# see: https://github.com/marvinpinto/action-automatic-releases for param
+# options.
 name: "tagged-release"
 
 on:
@@ -53,8 +60,6 @@ jobs:
       run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
     # Deploy a new release.
-    # see: https://github.com/marvinpinto/action-automatic-releases for param
-    # options.
     - name: Upload Release
       if: ( steps.build_bundle.outcome  != 'failure' )
         &&  ( steps.build_bundle.outcome != 'skipped' )
