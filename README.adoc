@@ -19,11 +19,11 @@
 :url-nvm-install: {url-nvm}#installation
 :url-source-maps: https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map
 
-jMonkeyEngine Admin must push an annotated tag to any branch to trigger the release of a new UI. This will also trigger the workflow of the jMonkeyEngine wiki. The wiki always pulls in the "latest" release. 
 
 image:https://github.com/jMonkeyEngine/wiki-ui/workflows/Build%20UI/badge.svg[Build UI Status Badge, 175, 25]
 image:https://github.com/jMonkeyEngine/wiki-ui/workflows/Tagged%20Release/badge.svg[Tagged Release Status Badge, 175, 25]
 
+jMonkeyEngine Admin must push an semantic versioned annotated tag to any branch to trigger the release of a new UI. This will also trigger the workflow of the jMonkeyEngine wiki. The wiki always pulls in the "latest" release.
 
 
 This project is an archetype that demonstrates how to produce a UI bundle that can be used by {url-antora}[Antora] to generated a documentation site.
