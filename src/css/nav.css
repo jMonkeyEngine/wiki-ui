@@ -283,9 +283,9 @@ html.is-clipped--nav {
 
 .theme-switch {
   display: inline-block;
-  height: 28px;
+  height: 32px;
   position: relative;
-  width: 44px;
+  width: 64px;
 }
 
 .navlabel {
@@ -299,8 +299,9 @@ html.is-clipped--nav {
 }
 
 .slider {
-  background-color: var(--color-jet-30);
-  border-radius: 25px;
+  background-image: url(../img/day-night.png);
+  background-size: cover;
+  border-radius: 16px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -311,21 +312,23 @@ html.is-clipped--nav {
 }
 
 .slider::before {
-  background-color: var(--color-white);
-  border-radius: 25px;
-  bottom: 4px;
+  background-color: var(--jme-slider-but-color);
+  opacity: 0.8;
+  border-radius: 16px;
+  bottom: 0;
   content: "";
-  height: 20px;
-  left: 4px;
+  height: 32px;
+  left: 0;
   position: absolute;
   transition: 0.4s;
-  width: 20px;
+  width: 32px;
 }
 
 input:checked + .slider {
-  background-color: var(--jme-link-font-color);
+  background-size: cover;
 }
 
 input:checked + .slider::before {
-  transform: translateX(16px);
+  transform: translateX(100%);
+  background-color: var(--jme-slider-but-color);
 }

@@ -30,6 +30,7 @@
   --jme-code-font-color: #ddd;
   --jme-pre-background: #444;
   --jme-pre-border-color: #ccc;
+  --jme-slider-but-color: #f4f4f4;
 }
 
 [data-theme="light"] {
@@ -63,6 +64,7 @@
   --jme-code-font-color: #222;
   --jme-pre-background: #fafafa;
   --jme-pre-border-color: #ccc;
+  --jme-slider-but-color: #fcd440;  
 }
 
 :root {
