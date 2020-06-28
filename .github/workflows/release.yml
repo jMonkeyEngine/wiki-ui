@@ -79,4 +79,4 @@ jobs:
       run: |
        curl -X POST https://api.github.com/repos/mitm001/docs.jmonkeyengine.org/dispatches \
        --user ${{ secrets.WIKI_UI_DISPATCH }} \
-       --data '{"event_type":"ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
+       --data '{"event_type":"wiki-ui-build","client_payload":{"sha": "${{ github.sha }}"}}'
